@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../styles/App.css';
+import Timer from "../components/Timer";
 
 class App extends Component {
 	constructor(){
@@ -12,17 +13,9 @@ class App extends Component {
 
 	render(){
 		return (
-		  <div className="App">
-			  <header className="header">
-				  <div className="adder-wrapper"></div>		
-			  </header>
-			  <main className="main">		
-				  <div className="timer-wrapper"></div>
-			  </main>
-			  <footer className="footer">
-				  <div className="global-actions-wrapper"></div>
-			  </footer>
-		  </div>
+		<div className="App">
+			<Timer></Timer>
+		</div>
 		);
 	}
 }
