@@ -1,9 +1,46 @@
 import React from "react";
 import TimerButton from "./TimerButton";
 import Icon from "./Icon";
-import Counter from "../scripts/Counter";
+import Counter from "./Counter";
+import TimerControls from "./TimerControls";
 
 export default function Timer() {
+
+
+	// the following are called by the increment / decrement buttons in the Timer
+	// they affect the state of the Counter
+
+	incrementHours = function () {
+		cumulativeDate.setHours(cumulativeDate.getHours() + 1);
+		printTotal();
+	}
+
+	decrementHours = function () {
+		cumulativeDate.setHours(cumulativeDate.getHours() - 1);
+		printTotal();
+	}
+
+	incrementMinutes = function () {
+		cumulativeDate.setMinutes(cumulativeDate.getMinutes() + 1);
+		printTotal();
+	}
+
+	decrementMinutes = function () {
+		cumulativeDate.setMinutes(cumulativeDate.getMinutes() - 1);
+		printTotal();
+	}
+
+	incrementSeconds = function () {
+		cumulativeDate.setSeconds(cumulativeDate.getSeconds() + 1);
+		printTotal();
+	}
+
+	decrementSeconds = function () {
+		cumulativeDate.setSeconds(cumulativeDate.getSeconds() - 1);
+		printTotal();
+	}
+
+
 	return (
 		<div className="timer timer--appear" id="timer-0">
 			<input
@@ -11,11 +48,7 @@ export default function Timer() {
 				name="timer__textfield"
 				className="timer__name"
 			></input>
-			<div className="timer__button-container">
-				<TimerButton button_name="button">start</TimerButton>
-				<TimerButton button_name="button">reset</TimerButton>
-				<TimerButton button_name="button">remove</TimerButton>
-			</div>
+			<TimerControls />
 			<div className="timer__display">
 
 				<TimerButton button_name="set-time">
