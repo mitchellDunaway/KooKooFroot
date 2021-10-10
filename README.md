@@ -18,6 +18,8 @@ The idea is to have several concurrent timers and stopwatches going.
 			* [x] stop
 			* [x] reset
 		* [ ] break into smallest components
+	* [x] Adder toolbar should should how more options at smaller screen sizes
+		* [x] Do not switch from toolbar to single add button
 	* [ ] Play backward
 		* [ ] on complete
 			* [ ] notice
@@ -33,14 +35,18 @@ The idea is to have several concurrent timers and stopwatches going.
 	* [ ] improve styles
 		* [ ] remove black color for active button
 		* [ ] make it more clear what direction a timer is going
-		* [ ] stopping is either unifomrly "pause" or "stop"
+		* [ ] stopping is either uniformly "pause" or "stop"
+		* [ ] improve discoverability of timer name edit feature
 * [ ] remove all bugs and clean up code
-	* [ ] rename all functions, properties, etc.
-		* [ ] prefix with current scope
-		* [ ] indicate type (ex. booleans begin with "is")
-		* [ ] uniformity (ex. either play or start, either stop or pause)
-	* [ ] reorder all items
-	* [ ] when a timer plays, it will briefly show 23:59:59
-	* [ ] when pressing play it will lose its current interval and resume playing from its last cumulative amount.
-	* [ ] playing backward from zero starts you at 23:59:59. It should instead prevent playing backward while at zero.
-* [ ] publish and make a build publicly available 
+	* [ ] Bugs
+		* [x] some timers do not stop at Zero (still referencing props.isRunning)
+		* [x] when a timer plays, it will briefly shows 23:59:59 (sometimes the current and initial are so close, it's a negative number (depending on which was made first))
+		* [ ] when pressing play while playing it will lose its current interval and resume playing from its last cumulative amount.
+		* [ ] playing backward from zero starts you at 23:59:59. It should instead prevent playing backward while at zero.
+	* [ ] Code clean up
+		* [ ] rename all functions, properties, etc.
+			* [ ] prefix with current scope
+			* [ ] indicate type (ex. booleans begin with "is")
+			* [ ] uniformity (ex. either play or start, either stop or pause)
+		* [ ] put methods in logical order
+* [x] publish and make a build publicly available 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAppleAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faAppleAlt } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Adder(props) {
@@ -45,16 +45,11 @@ export default function Adder(props) {
 		}
 	}
 
-	// add a button that sets the interval to 5 min and counts down
-
 	return (
 		<AdderWrapper>
 			<AdderMain>
 				<AdderTextfield onChange={handleAdderTextFieldChange} type="textfield" placeholder="Timer Name" value={newTimerName} onKeyDown={handleAdderTextFieldKeyDown}>
 				</AdderTextfield>
-				<AdderButtonIcon onClick={() => { handleButtonClick(true) }}>
-					<StyledFontAwesomeIcon icon={faPlusCircle} />
-				</AdderButtonIcon>
 				<AdderButton onClick={() => { handleButtonClick(false) }}>Add</AdderButton>
 				<AdderButton onClick={() => { handleButtonClick(true) }}>Add and Start</AdderButton>
 				<AdderButton onClick={() => { props.addTimer(tomatoWork) }}>
@@ -66,7 +61,7 @@ export default function Adder(props) {
 }
 
 const AdderWrapper = styled.div`
-position: fixed;
+position: sticky;
 z-index: 9;
 top: 0;
 left: 0;
@@ -77,15 +72,14 @@ font-size: 1.6rem;
 const AdderMain = styled.div`
 	padding: 1rem;
 	display: flex;
+	flex-wrap: wrap;
+	background: #f7f2e8;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+	border-bottom: 3px solid #f5e7cc;
+	gap: 1rem;
 
-& > *:not(:last-child) {
-	margin-right: 1rem;
-}
 @media (min-width: 37.5em) {
 	& {
-		background: #f7f2e8;
-		box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
-		border-bottom: 3px solid #f5e7cc;
 	}
 }
 `;
@@ -93,17 +87,16 @@ const AdderMain = styled.div`
 const AdderButton = styled.button`
 cursor: pointer;
 transition: all 0.1s;
-display: none;
 color: #956504;
 background: #ede8de;
 border: none;
+padding: 1rem 1.5rem;
+background-color: #ede8de;
+border-radius: 5px;
+display: block;
 
 @media (min-width: 56.25em) {
 	& {
-		background-color: #ede8de;
-		padding: 1rem 1.5rem;
-		border-radius: 5px;
-		display: block;
 	}
 
 }
@@ -116,49 +109,19 @@ border: none;
 }
 `;
 
-const AdderButtonIcon = styled(AdderButton)`
-
-	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
-	border: 3px solid #f5e7cc;
-	border-radius: 50%;
-	display: block;
-	font-size: 0;
-
-@media (min-width: 37.5em) {
-	& {
-		box-shadow: none;
-		border: none;
-	}
-}
-@media (min-width: 56.25em) {
-	& {
-		display: none;
-	}
-}
-
-`;
-
-const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-font-size: 6rem;
-@media (min-width: 37.5em) {
-	& {
-		font-size: 4rem;
-	}
-}
-`;
 
 const AdderTextfield = styled.input`
 padding: 0.5rem 1rem;
 border: none;
 border-radius: 5px;
-display: none;
 flex-grow: 1;
+display: block;
+
 &::placeholder {
 	color: #ccc;
 }
 @media (min-width: 37.5em) {
 	& {
-		display: block;
 	}
 }
 `;

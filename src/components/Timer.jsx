@@ -96,7 +96,7 @@ export default class Timer extends React.Component {
 		const currentAmount = Date.now();
 		this.setState((prevState) => {
 			return {
-				intervalAmount: (currentAmount - prevState.initialAmount) * this.state.direction
+				intervalAmount: (currentAmount - prevState.initialAmount > 0 ? currentAmount - prevState.initialAmount : 0) * this.state.direction
 			}
 		}, () => {
 			this.updateTotalDate();
@@ -149,12 +149,13 @@ export default class Timer extends React.Component {
 				totalDate: new Date(prevState.intervalAmount + prevState.cumulativeAmount)
 			}
 		},()=>{
-			if(this.state.totalDate.getTime() < 1000 && this.props.direction < 0 && this.state.running) {
+			if(this.state.totalDate.getTime() < 1000 && this.state.direction < 0 && this.state.running) {
+				this.stop();
 				if(typeof this.props.onComplete !== "undefined"){
 					this.props.onComplete();
 				}
-				alert("times up!");
-				this.stop();
+				// change the display of the timer
+				// 
 			}
 			if (this.state.running) {
 				this.runCounterTimeout = setTimeout(this.runCounter, 1000);
@@ -164,13 +165,11 @@ export default class Timer extends React.Component {
 
 	componentDidMount() {
 		console.log(this.state.name, " componentDidMount");
-
-		
 		this.props.sendPlayMethod(this.start, this.props.index);
 		this.props.sendStopMethod(this.stop, this.props.index);
 		this.props.sendResetMethod(this.reset, this.props.index);
 		if(this.state.running){
-			this.start()
+			this.start();
 		}
 	}
 
@@ -187,6 +186,13 @@ export default class Timer extends React.Component {
 	render() {
 		return (
 			<TimerMain id={this.state.name}>
+				{ false ? 
+				<TimerTimesUpNotice>
+					Times Up
+				</TimerTimesUpNotice>
+				:
+				null
+				}
 				 
 				<TimerCloseButton onClick={this.props.removeTimer}>
 					<FontAwesomeIcon icon={faTimesCircle} />
@@ -358,4 +364,18 @@ line-height: 0.7em;
 &::after {
 	content: "${props =>props.timeUnit}";
 }
+`;
+
+const TimerTimesUpNotice = styled.div`
+	position: absolute;
+	color: #f5e7cc;
+	background: #956504;
+	z-index: 9;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 0;
+	left: 0;
 `;

@@ -7,7 +7,7 @@ import { faPauseCircle, faPlayCircle, faTrashAlt, faUndoAlt } from '@fortawesome
 export default function GlobalActions(props) {
 
 	return (
-		<GlobalActionsWrapper>
+		<>
 			<GlobalActionsMain>
 				<GlobalActionsButton onClick={props.stopAll}>
 					<GlobalActionsIcon icon={faPauseCircle} />
@@ -26,11 +26,11 @@ export default function GlobalActions(props) {
 					Remove All
 				</GlobalActionsButton>
 			</GlobalActionsMain>
-		</GlobalActionsWrapper>
+		</>
 	)
 }
 
-const GlobalActionsWrapper = styled.div``;
+
 
 const GlobalActionsMain = styled.div`
 background: #f7f2e8;

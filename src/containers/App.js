@@ -55,9 +55,8 @@ class App extends Component {
 				timers: prevState.timers.map((timer, index) => {
 					return {
 						...timer,
-						playMethod: i === index
-							? timerPlayMethod
-							: timer.playMethod,
+						playMethod:
+							i === index ? timerPlayMethod : timer.playMethod,
 					};
 				}),
 			};
@@ -71,9 +70,8 @@ class App extends Component {
 				timers: prevState.timers.map((timer, index) => {
 					return {
 						...timer,
-						stopMethod: i === index
-							? timerStopMethod
-							: timer.stopMethod,
+						stopMethod:
+							i === index ? timerStopMethod : timer.stopMethod,
 					};
 				}),
 			};
@@ -87,15 +85,13 @@ class App extends Component {
 				timers: prevState.timers.map((timer, index) => {
 					return {
 						...timer,
-						resetMethod: i === index
-							? timerResetMethod
-							: timer.resetMethod,
+						resetMethod:
+							i === index ? timerResetMethod : timer.resetMethod,
 					};
 				}),
 			};
 		});
 	}
-
 
 	// functions for Global Actions
 	removeAllTimers = function () {
@@ -128,8 +124,6 @@ class App extends Component {
 		}
 	};
 
-
-
 	componentDidMount() {
 		console.log("App componentDidMount");
 	}
@@ -141,9 +135,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="App">
-				<header className="header">
-					<Adder addTimer={this.addTimer} />
-				</header>
+				<Adder addTimer={this.addTimer} />
 				<MainContent>
 					<TimerWrapper>
 						{this.state.timers.map((timer, index) => (
@@ -165,14 +157,12 @@ class App extends Component {
 						))}
 					</TimerWrapper>
 				</MainContent>
-				<footer className="footer">
-					<GlobalActions
-						playAll={this.playAllTimers}
-						stopAll={this.stopAllTimers}
-						removeAll={this.removeAllTimers}
-						resetAll={this.resetAllTimers}
-					/>
-				</footer>
+				<GlobalActions
+					playAll={this.playAllTimers}
+					stopAll={this.stopAllTimers}
+					removeAll={this.removeAllTimers}
+					resetAll={this.resetAllTimers}
+				/>
 			</div>
 		);
 	}
@@ -180,7 +170,7 @@ class App extends Component {
 
 const TimerWrapper = styled.div`
 	font-size: 2rem;
-	padding: 1rem;
+	padding: 2rem 1rem;
 	flex: 1 0 auto;
 	display: grid;
 	grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
@@ -193,7 +183,6 @@ const MainContent = styled.main`
 	height: 100%;
 	display: flex;
 	flex-direction: column;
-	&::before,
 	&::after {
 		content: "";
 		display: block;
@@ -205,9 +194,6 @@ const MainContent = styled.main`
 		background-size: 26px 26px;
 		background-color: #f7f2e8;
 		flex-shrink: 0;
-	}
-	&::before {
-		flex-basis: 7.8rem;
 	}
 	&::after {
 		flex-basis: 9.8rem;
