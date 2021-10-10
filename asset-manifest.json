@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/KooKooFroot/static/css/main.4b65bbd2.chunk.css",
+    "main.js": "/KooKooFroot/static/js/main.99c77f7e.chunk.js",
+    "main.js.map": "/KooKooFroot/static/js/main.99c77f7e.chunk.js.map",
+    "runtime-main.js": "/KooKooFroot/static/js/runtime-main.c2fe1ffe.js",
+    "runtime-main.js.map": "/KooKooFroot/static/js/runtime-main.c2fe1ffe.js.map",
+    "static/js/2.62dbb132.chunk.js": "/KooKooFroot/static/js/2.62dbb132.chunk.js",
+    "static/js/2.62dbb132.chunk.js.map": "/KooKooFroot/static/js/2.62dbb132.chunk.js.map",
+    "static/js/3.586c9c97.chunk.js": "/KooKooFroot/static/js/3.586c9c97.chunk.js",
+    "static/js/3.586c9c97.chunk.js.map": "/KooKooFroot/static/js/3.586c9c97.chunk.js.map",
+    "index.html": "/KooKooFroot/index.html",
+    "static/css/main.4b65bbd2.chunk.css.map": "/KooKooFroot/static/css/main.4b65bbd2.chunk.css.map",
+    "static/js/2.62dbb132.chunk.js.LICENSE.txt": "/KooKooFroot/static/js/2.62dbb132.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.c2fe1ffe.js",
+    "static/js/2.62dbb132.chunk.js",
+    "static/css/main.4b65bbd2.chunk.css",
+    "static/js/main.99c77f7e.chunk.js"
+  ]
+}
