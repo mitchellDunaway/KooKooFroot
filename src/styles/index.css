@@ -1,0 +1,82 @@
+@import url("https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&display=swap");
+/*
+0px - 600px (0 - 56.2em):			phone (default)
+600px - 900px (37.5em - 56.2em):	tablet portrait
+900px - 1200px (56.2em - 75em):		tablet landscape
+1200 - 1800 (75em - 112.5em):		desktop
+1800+ (112.5em+): 					big desktop
+
+$breakpoint argument choices:
+- phone
+- tab-port
+- tab-land
+- desktop
+- big-desktop
+*/
+/* animation definitions */
+@keyframes appearUp {
+	0% {
+		opacity: 0;
+		transform: translateY(1rem);
+		margin-top: 1rem;
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+		margin-top: inherit;
+	}
+}
+
+@keyframes disappearUp {
+	0% {
+		opacity: auto;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+:root {
+	--example: #000;
+}
+
+*,
+*::after,
+*::before {
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
+	font-family: inherit;
+	font-size: inherit;
+}
+
+html,
+body,
+#root,
+.App {
+	height: 100% !important;
+}
+
+html {
+	font-size: 62.5%;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Anonymous Pro", monospace;
+	font-weight: 400;
+	line-height: 1.6;
+	font-size: 1.6rem;
+	margin: 0;
+	background: #ede8de;
+	color: #956504;
+}
+
+/*
+Clearfix
+*/
+.clearfix::after {
+	content: "";
+	display: table;
+	clear: both;
+}
