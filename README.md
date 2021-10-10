@@ -1,4 +1,4 @@
-# Timer Tracker
+# KooKooFroot
 
 The idea is to have several concurrent timers and stopwatches going. 
 
