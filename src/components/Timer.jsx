@@ -71,11 +71,18 @@ export default class Timer extends React.Component {
 	start = function (direction) {
 		console.log(this.state.name, " start");
 		this.setState((prevState) => {
-			return {
-				running: true,
-				direction: direction ?? prevState.direction,
+			if (prevState.running) {
+				return {
+					direction: direction ?? prevState.direction,
+				}
+			} else {
+				return {
+					running: true,
+					direction: direction ?? prevState.direction,
+				}
 			}
 		}, () => {
+			this.updateCumulative();
 			this.beginNewInterval();
 			this.runCounter();
 		});
@@ -148,10 +155,10 @@ export default class Timer extends React.Component {
 			return {
 				totalDate: new Date(prevState.intervalAmount + prevState.cumulativeAmount)
 			}
-		},()=>{
-			if(this.state.totalDate.getTime() < 1000 && this.state.direction < 0 && this.state.running) {
+		}, () => {
+			if (this.state.totalDate.getTime() < 1000 && this.state.direction < 0 && this.state.running) {
 				this.stop();
-				if(typeof this.props.onComplete !== "undefined"){
+				if (typeof this.props.onComplete !== "undefined") {
 					this.props.onComplete();
 				}
 				// change the display of the timer
@@ -168,7 +175,7 @@ export default class Timer extends React.Component {
 		this.props.sendPlayMethod(this.start, this.props.index);
 		this.props.sendStopMethod(this.stop, this.props.index);
 		this.props.sendResetMethod(this.reset, this.props.index);
-		if(this.state.running){
+		if (this.state.running) {
 			this.start();
 		}
 	}
@@ -186,14 +193,14 @@ export default class Timer extends React.Component {
 	render() {
 		return (
 			<TimerMain id={this.state.name}>
-				{ false ? 
-				<TimerTimesUpNotice>
-					Times Up
-				</TimerTimesUpNotice>
-				:
-				null
+				{false ?
+					<TimerTimesUpNotice>
+						Times Up
+					</TimerTimesUpNotice>
+					:
+					null
 				}
-				 
+
 				<TimerCloseButton onClick={this.props.removeTimer}>
 					<FontAwesomeIcon icon={faTimesCircle} />
 				</TimerCloseButton>
@@ -220,7 +227,7 @@ export default class Timer extends React.Component {
 					</TimerButton>
 				</TimerButtonContainer>
 
-				<TimerDisplay className={this.state.running ? "playing" : "" }>
+				<TimerDisplay className={this.state.running ? "playing" : ""}>
 
 					<TimerSetTime onClick={() => { this.adjustTime('hours', 1) }}>
 						<FontAwesomeIcon icon={faCaretSquareUp} />
@@ -337,7 +344,7 @@ font-size: 4rem;
 text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
 border-radius: 10px;
 box-shadow: inset 2px 2px 2px rgba(0, 0, 0, 0.1);
-border: ${props => props.className === "playing" ? "0.3rem solid #956504" : "0.3rem solid #f7f2e8" };
+border: ${props => props.className === "playing" ? "0.3rem solid #956504" : "0.3rem solid #f7f2e8"};
 display: grid;
 grid-template-rows: repeat(3, min-content);
 grid-template-columns: repeat(3, min-content);
@@ -362,7 +369,7 @@ line-height: 0em;
 const TimerDisplayTime = styled.div`
 line-height: 0.7em;
 &::after {
-	content: "${props =>props.timeUnit}";
+	content: "${props => props.timeUnit}";
 }
 `;
 
