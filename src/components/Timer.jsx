@@ -1,7 +1,7 @@
 import React from "react";
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCaretSquareDown, faCaretSquareUp, faFastBackward, faPlay, faStop, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretSquareDown, faCaretSquareUp, faFastBackward, faPlay, faStop, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 
 export default class Timer extends React.Component {
@@ -27,6 +27,7 @@ export default class Timer extends React.Component {
 		this.stop = this.stop.bind(this);
 		this.reset = this.reset.bind(this);
 		this.updateName = this.updateName.bind(this);
+		this.allowToCountdown = this.allowToCountdown.bind(this);
 	}
 
 
@@ -69,17 +70,11 @@ export default class Timer extends React.Component {
 	}
 
 	start = function (direction) {
-		console.log(this.state.name, " start");
+		console.log(this.state.name, " ------- START -------");
 		this.setState((prevState) => {
-			if (prevState.running) {
-				return {
-					direction: direction ?? prevState.direction,
-				}
-			} else {
-				return {
-					running: true,
-					direction: direction ?? prevState.direction,
-				}
+			return {
+				running: true,
+				direction: direction ?? prevState.direction,
 			}
 		}, () => {
 			this.updateCumulative();
@@ -93,17 +88,17 @@ export default class Timer extends React.Component {
 		this.setState(() => {
 			return {
 				initialAmount: Date.now(),
-				intervalAmount: 0
+				intervalAmount: 0,
 			}
 		});
 	}
 
 	runCounter = function () {
-		console.log(this.state.name, " runCounter");
+		console.log(this.state.name, " # RUN COUNTER #");
 		const currentAmount = Date.now();
 		this.setState((prevState) => {
 			return {
-				intervalAmount: (currentAmount - prevState.initialAmount > 0 ? currentAmount - prevState.initialAmount : 0) * this.state.direction
+				intervalAmount: (currentAmount - prevState.initialAmount >= 0 ? currentAmount - prevState.initialAmount : 0) * this.state.direction,
 			}
 		}, () => {
 			this.updateTotalDate();
@@ -111,7 +106,7 @@ export default class Timer extends React.Component {
 	}
 
 	stop = function () {
-		console.log(this.state.name, " stop");
+		console.log(this.state.name, " ------- STOP -------");
 		clearTimeout(this.runCounterTimeout);
 		this.setState(() => {
 			return {
@@ -153,7 +148,7 @@ export default class Timer extends React.Component {
 		console.log(this.state.name, " updateTotalDate");
 		this.setState((prevState) => {
 			return {
-				totalDate: new Date(prevState.intervalAmount + prevState.cumulativeAmount)
+				totalDate: new Date(prevState.intervalAmount + prevState.cumulativeAmount),
 			}
 		}, () => {
 			if (this.state.totalDate.getTime() < 1000 && this.state.direction < 0 && this.state.running) {
@@ -162,12 +157,22 @@ export default class Timer extends React.Component {
 					this.props.onComplete();
 				}
 				// change the display of the timer
-				// 
+				return;
 			}
 			if (this.state.running) {
-				this.runCounterTimeout = setTimeout(this.runCounter, 1000);
+				this.runCounterTimeout = setTimeout(this.runCounter, 100);
 			}
 		});
+	}
+
+	allowToCountdown = function () {
+		console.log(this.state.name, " allowToCountdown");
+		const isRunningForward = this.state.running && this.state.direction === 1;
+		const isMoreThanASecond = this.state.totalDate.getTime() > 999;
+		if((isRunningForward || !this.state.running) && isMoreThanASecond){
+			return true;
+		}
+		return false;
 	}
 
 	componentDidMount() {
@@ -218,8 +223,8 @@ export default class Timer extends React.Component {
 						<FontAwesomeIcon icon={faFastBackward} />
 					</TimerButton>
 
-					<TimerButton onClick={this.state.running && this.state.direction === -1 ? this.stop : () => this.start(-1)}>
-						{this.state.running && this.state.direction === -1 ? <FontAwesomeIcon icon={faStop} /> : <FontAwesomeIcon icon={faPlay} flip="horizontal" />}
+					<TimerButton onClick={ this.allowToCountdown() ? () => this.start(-1) : this.stop }>
+						{ this.allowToCountdown() ? <FontAwesomeIcon icon={faPlay} flip="horizontal" /> : <FontAwesomeIcon icon={faStop} /> }
 					</TimerButton>
 
 					<TimerButton onClick={this.state.running && this.state.direction === 1 ? this.stop : () => this.start(1)}>
