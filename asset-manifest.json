@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/KooKooFroot/static/css/main.4b65bbd2.chunk.css",
-    "main.js": "/KooKooFroot/static/js/main.63c2ddd3.chunk.js",
-    "main.js.map": "/KooKooFroot/static/js/main.63c2ddd3.chunk.js.map",
+    "main.js": "/KooKooFroot/static/js/main.5f963829.chunk.js",
+    "main.js.map": "/KooKooFroot/static/js/main.5f963829.chunk.js.map",
     "runtime-main.js": "/KooKooFroot/static/js/runtime-main.c2fe1ffe.js",
     "runtime-main.js.map": "/KooKooFroot/static/js/runtime-main.c2fe1ffe.js.map",
     "static/js/2.051b083b.chunk.js": "/KooKooFroot/static/js/2.051b083b.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.c2fe1ffe.js",
     "static/js/2.051b083b.chunk.js",
     "static/css/main.4b65bbd2.chunk.css",
-    "static/js/main.63c2ddd3.chunk.js"
+    "static/js/main.5f963829.chunk.js"
   ]
 }
